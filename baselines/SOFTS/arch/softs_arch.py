@@ -106,7 +106,7 @@ class SOFTS(nn.Module):
         dec_out = self.forecast(x_enc, x_mark_enc)
         return dec_out[:, -self.pred_len:, :]  # [B, L, D]
 
-
+    #研究这个时间特征处理方法
     def forward(self, history_data: torch.Tensor, future_data: torch.Tensor, batch_seen: int, epoch: int, train: bool,
                 **kwargs) -> torch.Tensor:
         """
