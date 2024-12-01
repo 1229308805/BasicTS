@@ -9,7 +9,7 @@ from basicts.runners import SimpleTimeSeriesForecastingRunner
 from basicts.scaler import ZScoreScaler
 from basicts.utils import get_regular_settings
 
-from .arch import DLinear_GLAFF
+from .arch import TimeGLAFF
 from .loss import glaff_loss
 
 ############################## Hot Parameters ##############################
@@ -23,7 +23,7 @@ NORM_EACH_CHANNEL = regular_settings['NORM_EACH_CHANNEL'] # Whether to normalize
 RESCALE = regular_settings['RESCALE'] # Whether to rescale the data
 NULL_VAL = regular_settings['NULL_VAL'] # Null value in the data
 # Model architecture and parameters
-MODEL_ARCH = DLinear_GLAFF
+MODEL_ARCH = TimeGLAFF
 MODEL_PARAM = {
     "hist_len": INPUT_LEN,
     "pred_len": OUTPUT_LEN,
@@ -130,13 +130,13 @@ CFG.TRAIN.DATA.SHUFFLE = True
 CFG.VAL = EasyDict()
 CFG.VAL.INTERVAL = 1
 CFG.VAL.DATA = EasyDict()
-CFG.VAL.DATA.BATCH_SIZE = 1
+CFG.VAL.DATA.BATCH_SIZE = 64
 
 ############################## Test Configuration ##############################
 CFG.TEST = EasyDict()
 CFG.TEST.INTERVAL = 1
 CFG.TEST.DATA = EasyDict()
-CFG.TEST.DATA.BATCH_SIZE = 1
+CFG.TEST.DATA.BATCH_SIZE = 64
 
 ############################## Evaluation Configuration ##############################
 
